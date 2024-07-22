@@ -5,7 +5,7 @@
   Noter
 </h1>
 <p align="center">
-  A text viwer/editor made with Godot.
+  A text viewer/editor made with Godot.
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://github.com/stianfan/Noter/releases/tag/v1">
