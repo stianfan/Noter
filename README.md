@@ -8,7 +8,7 @@
   A text viwer/editor made with Godot.
 </p>
 <p align="center">
-  <a style="text-decoration:none"#">
+  <a style="text-decoration:none" href="https://github.com/stianfan/Noter/releases/tag/v1">
     <img alt="Static Badge" src="https://img.shields.io/badge/Download-v_1-blue">
   </a>
 </p>
