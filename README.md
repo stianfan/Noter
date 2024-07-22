@@ -20,7 +20,7 @@
 </h2>
 
 So, I decided to create myself a text editor with [Godot](https://godotengine.org/). The new text editor that's
-not taking the world by storm... It's lacking all the common features of other editors, heavy, and doesn't run that great.
+not taking the world by storm... It's lacking all the common features of other editors, it's heavy for what it is, and doesn't run that great.
 But hey, if you're into that kind of thing, who am I to judge?
 Just don't come crying to me when you can't figure out how to
 bold your text or word wrap your document. I'll be over here,
