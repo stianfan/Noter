@@ -1,0 +1,600 @@
+[gd_scene load_steps=53 format=3 uid="uid://dy2tf7rrmr6uc"]
+
+[ext_resource type="Theme" uid="uid://dqjegg3xhrpkr" path="res://theme.tres" id="1_xdxq2"]
+[ext_resource type="Script" path="res://noter.gd" id="2_dmqct"]
+[ext_resource type="FontFile" uid="uid://flxglwmxlsq8" path="res://open-iconic.ttf" id="4_bqa1n"]
+[ext_resource type="Script" path="res://ButtonResize.gd" id="7_rfve4"]
+[ext_resource type="StyleBox" uid="uid://dy2m8hg1vce24" path="res://blank.tres" id="8_a7pyx"]
+[ext_resource type="Script" path="res://PanelOptions.gd" id="9_pikvb"]
+[ext_resource type="Script" path="res://LineEditFind.gd" id="10_8x73d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iwa5p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhcyq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3kydp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rsiu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yytpt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jvltg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fherh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fsd0e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yeii4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rij3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_udmda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54knk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mak4m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71vgx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjomg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qirw4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xgb83"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4o2g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kpqgh"]
+
+[sub_resource type="GDScript" id="GDScript_akjfv"]
+script/source = "extends TextEdit
+
+var min_font_size = 5
+var max_font_size = 128
+var font_size_step = 1
+
+func _ready(): pass
+	# Set initial font size
+	# add_theme_font_size_override(\"font_size\", 13)
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and event.ctrl_pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			change_font_size(font_size_step)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			change_font_size(-font_size_step)
+	if event is InputEventKey:
+		if event.unicode == \"+\".unicode_at(0) and event.ctrl_pressed:
+			change_font_size(font_size_step)
+		elif event.pressed and event.keycode == KEY_MINUS and event.ctrl_pressed:
+			change_font_size(-font_size_step)
+
+func change_font_size(delta):
+	var current_size = get_theme_font_size(\"font_size\")
+	var new_size = clamp(current_size + delta, min_font_size, max_font_size)
+	add_theme_font_size_override(\"font_size\", new_size)
+
+func get_current_font_size():
+	return get_theme_font_size(\"font_size\")
+
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxvjv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16b0j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yakrt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uufse"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2h1e"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_qoc68"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_c2yp1"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_8gknb"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_kk00y"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_x8sit"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_ctmbo"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_gp64c"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_sfe4s"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_al42e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wcghe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ok1es"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqjgw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lg2ds"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1yv1u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8v0m5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_thww0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7x2tb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3q53"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4o6em"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j53f7"]
+
+[node name="Noter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xdxq2")
+script = ExtResource("2_dmqct")
+
+[node name="PanelBg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainWindow" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainWindow"]
+layout_mode = 2
+mouse_default_cursor_shape = 13
+alignment = 1
+
+[node name="ButtonPin" type="Button" parent="MainWindow/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bqa1n")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iwa5p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dhcyq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3kydp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2rsiu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yytpt")
+text = "          "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+
+[node name="LabelTitle" type="Label" parent="MainWindow/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jvltg")
+text = "Noter"
+horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 1
+
+[node name="LabelPath" type="Label" parent="MainWindow/HBoxContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Noter"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+max_lines_visible = 1
+visible_characters = 120
+visible_characters_behavior = 2
+visible_ratio = 24.0
+
+[node name="MenuButton" type="MenuButton" parent="MainWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_bqa1n")
+theme_override_font_sizes/font_size = 16
+shortcut_in_tooltip = false
+text = ""
+icon_alignment = 1
+switch_on_hover = true
+item_count = 7
+popup/item_0/text = "  New       [ctrl+N]"
+popup/item_0/id = 0
+popup/item_1/text = "  Open      [ctrl+O]"
+popup/item_1/id = 1
+popup/item_2/text = "  Save      [ctrl+S]"
+popup/item_2/id = 2
+popup/item_3/text = "  Save as   [+shift]"
+popup/item_3/id = 3
+popup/item_4/text = "  Find      [ctrl+F]"
+popup/item_4/id = 4
+popup/item_5/text = "  Settings  [ctrl+.]"
+popup/item_5/id = 6
+popup/item_6/text = "  Quit      [ctrl+Q]"
+popup/item_6/id = 7
+
+[node name="LabelStatus" type="Label" parent="MainWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 14
+text = "status"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMin" type="Button" parent="MainWindow/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bqa1n")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fherh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fsd0e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yeii4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rij3s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_udmda")
+text = "    "
+
+[node name="ButtonQuit" type="Button" parent="MainWindow/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bqa1n")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxEmpty_54knk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mak4m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71vgx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjomg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qirw4")
+text = "      "
+
+[node name="MarginContainer" type="MarginContainer" parent="MainWindow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+
+[node name="TextEdit" type="TextEdit" parent="MainWindow/MarginContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xgb83")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g4o2g")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_kpqgh")
+deselect_on_focus_loss_enabled = false
+scroll_smooth = true
+minimap_draw = true
+minimap_width = 32
+caret_blink = true
+caret_draw_when_editable_disabled = true
+highlight_all_occurrences = true
+script = SubResource("GDScript_akjfv")
+
+[node name="FileDialogOpen" type="FileDialog" parent="."]
+disable_3d = true
+transparent_bg = true
+title = "Open a File"
+initial_position = 2
+size = Vector2i(420, 420)
+borderless = true
+always_on_top = true
+transparent = true
+popup_window = true
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[node name="FileDialogSave" type="FileDialog" parent="."]
+disable_3d = true
+transparent_bg = true
+title = "Save"
+initial_position = 2
+size = Vector2i(458, 420)
+borderless = true
+always_on_top = true
+transparent = true
+popup_window = true
+ok_button_text = "Save"
+dialog_hide_on_ok = true
+access = 2
+use_native_dialog = true
+
+[node name="FileDialogFont" type="FileDialog" parent="."]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PanelFindUi" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(282, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -422.525
+offset_top = 31.36
+offset_right = -140.524
+offset_bottom = 71.36
+grow_horizontal = 0
+theme_override_styles/panel = ExtResource("8_a7pyx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelFindUi"]
+layout_mode = 0
+offset_right = 286.0
+offset_bottom = 40.0
+
+[node name="LineEditFind" type="LineEdit" parent="PanelFindUi/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 4
+placeholder_text = "find      "
+alignment = 1
+shortcut_keys_enabled = false
+flat = true
+select_all_on_focus = true
+caret_blink = true
+script = ExtResource("10_8x73d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelFindUi/HBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonFindPrev" type="Button" parent="PanelFindUi/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bqa1n")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxvjv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_16b0j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yakrt")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uufse")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i2h1e")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = ""
+flat = true
+
+[node name="ButtonFindNext" type="Button" parent="PanelFindUi/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bqa1n")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxvjv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_16b0j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yakrt")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uufse")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i2h1e")
+text = ""
+flat = true
+
+[node name="PanelOptions" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_pikvb")
+
+[node name="LabelOptions" type="Label" parent="PanelOptions"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.5
+offset_top = 6.055
+offset_right = 42.5
+offset_bottom = 28.055
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "Settings"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelOptions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -172.5
+offset_right = 100.0
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelOptions/VBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="PanelOptions/VBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Set font"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelOptions/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelOptions/VBoxContainer3/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Font size"
+
+[node name="SpinBox" type="SpinBox" parent="PanelOptions/VBoxContainer3/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_qoc68")
+min_value = 5.0
+max_value = 128.0
+value = 5.0
+alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="PanelOptions/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 13
+theme_override_icons/checked = SubResource("ImageTexture_c2yp1")
+theme_override_icons/checked_disabled = SubResource("ImageTexture_8gknb")
+theme_override_icons/unchecked = SubResource("ImageTexture_kk00y")
+theme_override_icons/unchecked_disabled = SubResource("ImageTexture_x8sit")
+theme_override_icons/checked_mirrored = SubResource("ImageTexture_ctmbo")
+theme_override_icons/checked_disabled_mirrored = SubResource("ImageTexture_gp64c")
+theme_override_icons/unchecked_mirrored = SubResource("ImageTexture_sfe4s")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("ImageTexture_al42e")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wcghe")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ok1es")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_bqjgw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lg2ds")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1yv1u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8v0m5")
+text = "Minimap"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelOptions/VBoxContainer3"]
+layout_mode = 2
+
+[node name="LabelTheme" type="Label" parent="PanelOptions/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Theme"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelOptions/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LabelCustom" type="Label" parent="PanelOptions/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Custom"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelOptions/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelColorFG" type="Label" parent="PanelOptions/VBoxContainer3/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(140, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Foreground"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ColorPickerButtonFG" type="ColorPickerButton" parent="PanelOptions/VBoxContainer3/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "BG"
+flat = true
+color = Color(1, 1, 1, 1)
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelOptions/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelColor2" type="Label" parent="PanelOptions/VBoxContainer3/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(140, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Highlight"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="PanelOptions/VBoxContainer3/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "2"
+flat = true
+color = Color(1, 1, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelOptions/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelColorBG" type="Label" parent="PanelOptions/VBoxContainer3/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Background"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ColorPickerButtonBG" type="ColorPickerButton" parent="PanelOptions/VBoxContainer3/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "BG"
+flat = true
+
+[node name="ButtonApply" type="Button" parent="PanelOptions/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "Apply"
+
+[node name="ButtonClose" type="Button" parent="PanelOptions/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "Close"
+
+[node name="ButtonResize" type="Button" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.995
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.99
+offset_top = -15.7601
+offset_right = 0.0100098
+offset_bottom = 12.565
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_thww0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7x2tb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u3q53")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4o6em")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j53f7")
+flat = true
+script = ExtResource("7_rfve4")
+
+[connection signal="gui_input" from="MainWindow/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
+[connection signal="pressed" from="MainWindow/HBoxContainer/ButtonPin" to="." method="_on_button_pin_pressed"]
+[connection signal="pressed" from="MainWindow/HBoxContainer/ButtonMin" to="." method="_on_button_min_pressed"]
+[connection signal="pressed" from="MainWindow/HBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="gui_input" from="MainWindow/MarginContainer/TextEdit" to="." method="_on_text_edit_gui_input"]
+[connection signal="file_selected" from="FileDialogOpen" to="." method="_on_file_dialog_open_file_selected"]
+[connection signal="file_selected" from="FileDialogSave" to="." method="_on_file_dialog_save_file_selected"]
+[connection signal="pressed" from="PanelOptions/VBoxContainer3/VBoxContainer2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelOptions/VBoxContainer3/VBoxContainer2/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="PanelOptions/VBoxContainer3/ButtonApply" to="." method="_on_button_apply_pressed"]
+[connection signal="pressed" from="PanelOptions/VBoxContainer3/ButtonClose" to="." method="_on_button_close_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dqjegg3xhrpkr"]
+
+[ext_resource type="FontFile" uid="uid://b4jljps60pidx" path="res://CascadiaCode-Regular.ttf" id="1_84h1x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cqlf"]
+
+[resource]
+resource_name = "ok"
+default_font = ExtResource("1_84h1x")
+PopupMenu/font_sizes/font_size = 13
+PopupMenu/styles/separator = SubResource("StyleBoxEmpty_2cqlf")
